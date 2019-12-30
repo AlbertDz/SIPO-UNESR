@@ -1,0 +1,42 @@
+<nav class="nav color-b-blue-3">
+    <section class="nav-ul-section font-12">
+        <ul class="nav-ul">
+            <li class="nav-li container c-point">
+                <a href="/profile" class="no-link color-white">
+                    <img src="/img/home.jpeg" class="btn-header">
+                    <p class="nav-li-text font-b">Inicio</p>
+                </a>
+            </li>
+            {{#if user.control_estudio}}
+            {{/if}}
+            {{#if user.analista_admin}}
+            <li class="nav-li container c-point">
+                <a href="" class="no-link color-white">
+                    <img src="/img/pagoArancel.jpg" class="btn-header">
+                    <p class="nav-li-text font-b">Pago de Aranceles</p>
+                </a>
+            </li>
+            {{/if}}
+            {{#if user.admin}}
+            <li class="nav-li container c-point">
+                <a href="/aranceles" class="no-link color-white">
+                    <img src="/img/aranceles.jpg" class="btn-header">
+                    <p class="nav-li-text font-b">Aranceles</p>
+                </a>
+            </li>
+            <li class="nav-li container c-point">
+                <a href="" class="no-link color-white">
+                    <img src="/img/consulta.jpg" class="btn-header">
+                    <p class="nav-li-text font-b">Consultar</p>
+                </a>
+            </li>
+            <li class="nav-li container c-point">
+                <a href="/users" class="no-link color-white">
+                    <img src="/img/users.jpeg" class="btn-header">
+                    <p class="nav-li-text font-b">Usuarios</p>
+                </a>
+            </li>
+            {{/if}}
+        </ul>
+    </section>
+</nav>

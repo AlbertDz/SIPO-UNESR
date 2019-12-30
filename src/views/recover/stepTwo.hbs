@@ -1,0 +1,45 @@
+<div class="recover p-10">
+    <div class="recover-step container">
+        <a href="/recover/step/1" class="step color-b-white p-10 no-link">
+            <span class="btn-35 btn btn-blue-2 br-50 container font-b">1</span>
+            <p class="color-grey">Ingrese su Cedula</p>
+        </a>
+        <section class="step color-b-blue-3 p-10">
+            <span class="btn-35 btn btn-white br-50 container font-b c-default">2</span>
+            <p class="color-white">Responda las preguntas</p>
+        </section>
+        <section class="step color-b-white p-10">
+            <span class="btn-35 btn btn-blue-2 br-50 container font-b c-default">3</span>
+            <p class="color-grey">Ingrese su nueva clave</p>
+        </section>
+    </div>
+    <div class="recover-form">
+        <section class="container">
+            <form action="/recover/step/3" method="POST" class="form">
+                <h1 class="form-title font-f-s p-10 color-b-blue-3">{{usuario.primer_nom}} {{usuario.primer_ape}}</h1>
+                <div class="form-section-parts">
+                    <div class="form-section">
+                        <input autofocus autocomplete="off" type="text" class="form-input" name="respuesta1" id="pr" required>
+                        <label for="" class="form-label">
+                            <span class="label-content">{{usuario.pregunta1}}</span>
+                        </label>
+                    </div>
+                    <div class="form-section">
+                        <input autocomplete="off" type="text" class="form-input" name="respuesta2" id="sr" required>
+                        <label for="" class="form-label">
+                            <span class="label-content">{{usuario.pregunta2}}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-section container">
+                    <button class="btn btn-grey form-button br-3">Siguiente</button>
+                    <input type="hidden" name="cedula" value={{usuario.id_usuario}}>
+                </div>
+            </form>
+        </section>
+        <div class="form-section container">
+            <a href="/login">Iniciar Sesión</a>
+        </div>
+    </div>
+</div>
+<script src="/js/step2.js"></script>

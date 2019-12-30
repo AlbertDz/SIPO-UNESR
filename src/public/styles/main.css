@@ -1,0 +1,53 @@
+@import './header.css';
+@import './footer.css';
+@import './module-header.css';
+@import './profile.css';
+@import './login.css';
+@import './recover.css';
+
+html, body {
+    background-color: rgb(245, 245, 245);
+}
+
+.body {
+    display: grid;
+    grid-template-rows: 50px auto;
+    grid-template-columns: 50px 1fr;
+    grid-template-areas: "header header"
+                         "nav cont";
+}
+
+body::-webkit-scrollbar {
+    background: none;
+    height: 10px;
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 20px;
+}
+
+.main {
+    display: grid;
+    grid-area: cont;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px auto;
+    justify-content: center;
+    width: 100%;
+}
+
+.hide { display: none; }
+
+.message {
+    left: 0;
+    position: fixed;
+    text-align: center;
+    top: 60px;
+    width: 100vw;
+    z-index: 1000;
+}
+
+.message div {
+    box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+    display: inline-block;
+}

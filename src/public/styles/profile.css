@@ -1,0 +1,119 @@
+.container-img p, .profile-img, .card h3, .card h4 { display: flex; }
+
+.container-img p { align-items: center; }
+
+.profile-content, .cards, .profile-data, .card { display: grid; }
+
+.profile-content, .profile-data { grid-gap: 10px; }
+
+.container-img p, .profile-img { justify-content: center; }
+
+.profile-data { align-content: center; }
+
+.container-img { position: relative; }
+
+.container-img p, .container-img img { position: absolute; }
+
+.profile-content {
+    grid-template-areas: "main data"
+                         "main access";
+    grid-template-columns: 1fr 420px;
+    grid-template-rows: 200px 300px;
+}
+
+.profile-main { grid-area: main; }
+
+.cards, .form-profile-edit { transition: all 1s ease; }
+
+.cards {
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, 200px);
+}
+
+.card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 165px 20px 15px;
+    height: 200px;
+    text-decoration: none;
+    transition: all .3s ease;
+    width: 200px;
+}
+
+.card img {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.card h3, .card h4 { padding: 0 5px; }
+
+.card h3 {
+    align-items: flex-end;
+    color: black;
+    font-size: 16px;
+}
+.card h4 {
+    align-items: flex-start;
+    color: rgb(100, 100, 100);
+    font-size: 12px;
+}
+
+.container-img p {
+    background-color: rgba(0, 0, 0, .3);
+    bottom: 0;
+    color: white;
+    font-size: 14px;
+    height: 20px;
+    transition: all .4s ease;
+    width: 100%;
+    z-index: 1;
+}
+
+.container-img:hover p {
+    background-color: rgba(0, 0, 0, .6);
+    font-size: 22px;
+    height: 50px;
+}
+
+.profile-data {
+    grid-area: data;
+
+    background-color: white;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas: "img info";
+    height: 200px;
+    padding: 10px;
+}
+
+.profile-img { grid-area: img; }
+
+.container-img {
+    background-color: rgba(0, 0, 0, .3);
+    clip-path: circle(50%);
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+}
+
+.container-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.profile-info {
+    color: rgb(100, 100, 100);
+    grid-area: info;
+    text-transform: uppercase;
+}
+
+.profile-info * {
+    margin: 10px 0;
+}
+
+.profile-direct-access {
+    grid-area: access;
+
+    overflow-y: auto;
+}

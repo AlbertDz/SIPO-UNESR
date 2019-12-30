@@ -1,0 +1,34 @@
+.bg {
+    align-items: center;
+    background-image: url(../img/bg.jpeg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.form-title img {
+    height: 30px;
+    margin: 10px;
+}
+
+.form-admin, .recover {
+    margin: auto;
+    position: absolute;
+    z-index: 10;
+}
+
+.form-admin {
+    display: flex;
+    justify-content: center;
+    left: 0;
+    width: 100vw;
+}
+
+.recover { left: 0; }

@@ -1,0 +1,32 @@
+<section class="list-users">
+    <table class="table">
+        <tr class="table-tr color-b-blue-3">
+            <th class="table-th">Cedula</th>
+            <th class="table-th">Nombres</th>
+            <th class="table-th">Apellidos</th>
+            <th class="table-th">Cargo</th>
+            <th class="table-th">Correo</th>
+            <th class="table-th">Télefono</th>
+            <th class="table-th">Opciones</th>
+        </tr>
+        {{#each usuarios}}
+        {{#if id_usuario}}
+        <tr class="table-tr c-point select-tr">
+            <td class="table-td">{{id_usuario}}</td>
+            <td class="table-td">{{primer_nom}} {{segundo_nom}}</td>
+            <td class="table-td">{{primer_ape}} {{segundo_ape}}</td>
+            <td class="table-td">{{nombre_cargo}}</td>
+            <td class="table-td">{{correo}}</td>
+            <td class="table-td">0{{numero}}</td>
+            <td class="table-td">
+                <div class="container">
+                    <a class="delete btn btn-red br-3 font-12" title="Eliminar"><i class="fas fa-user-minus"></i></a>
+                    <a href="/users/edit" class="update btn btn-grey br-3 font-12" title="Actualizar"><i class="fas fa-user-edit"></i></a>
+                    <a class="reset btn btn-blue-2 br-3 font-12" title="Resetear"><i class="fas fa-undo"></i></a>
+                </div>
+            </td>
+        </tr>
+        {{/if}}
+        {{/each}}
+    </table>
+</section>

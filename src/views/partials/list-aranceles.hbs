@@ -1,0 +1,24 @@
+<section class="list-aranceles">
+    <table class="table">
+        <tr class="table-tr color-b-blue-3">
+            <th class="table-th">Codigo</th>
+            <th class="table-th">Concepto</th>
+            <th class="table-th">Monto</th>
+            <th class="table-th">Opciones</th>
+        </tr>
+
+        {{#each arancel}}
+        <tr class="table-tr">
+            <td class="table-td">{{codigo}}</td>
+            <td class="table-td">{{concepto}}</td>
+            <td class="table-td">{{monto}}</td>
+            <td class="table-td">
+                <div class="container">
+                    <span class="delete btn btn-red br-3 font-12" title="Eliminar"><i class="fas fa-trash-alt"></i></span>
+                    <span class="update btn btn-grey br-3 font-12" title="Actualizar"><i class="fas fa-edit"></i></span>
+                </div>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</section>
