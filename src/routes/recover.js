@@ -21,9 +21,10 @@ router.post('/step/2', userYes, isNotLoggedIn, async (req, res) => {
     }
 });
 
-router.post('/step/3', userYes, isNotLoggedIn, async (req, res) => {
-    const { respuesta1, respuesta2, cedula } = req.body;
-    const usuarios = await pool.query('select id_usuario,primer_nom,primer_ape,respuesta1,respuesta2 from usuario inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [cedula]);
+router.post('/step/3/:id', userYes, isNotLoggedIn, async (req, res) => {
+    const { id } = req.params;
+    const { respuesta1, respuesta2 } = req.body;
+    const usuarios = await pool.query('select id_usuario,primer_nom,primer_ape,respuesta1,respuesta2 from usuario inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [id]);
 
     if (usuarios.length > 0) {
         const usuario = usuarios[0];
@@ -39,10 +40,11 @@ router.post('/step/3', userYes, isNotLoggedIn, async (req, res) => {
     }
 });
 
-router.post('/step/completed', userYes, isNotLoggedIn, async (req, res) => {
+router.post('/step/completed/:id', userYes, isNotLoggedIn, async (req, res) => {
+    const { id } = req.params;
     let { pass, cedula } = req.body;
     pass = await helpers.encryptPassword(pass),
-    await pool.query('update login set  bloqueado = 0, intentos = 3, password = ? where id_usuario = ?', [pass, cedula]);
+    await pool.query('update login set  bloqueado = 0, intentos = 3, password = ? where id_usuario = ?', [pass, id]);
 
     req.flash('success', 'Contraseña cambiada exitosamente');
     res.redirect('/login');

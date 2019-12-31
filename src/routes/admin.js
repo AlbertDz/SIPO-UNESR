@@ -94,7 +94,6 @@ router.post('/users/add', isLoggedIn, admin, async (req, res) => {
 });
 
 router.get('/users/edit', isLoggedIn, admin, (req, res) => {
-    console.log(req.body);
     res.render('admin/edit-user', { title: 'Editar Usuario' })
 });
 

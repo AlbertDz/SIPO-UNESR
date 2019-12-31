@@ -5,6 +5,7 @@ const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn, userNone, userYes } = require('../lib/auth');
 const helpers = require('../lib/helpers');
 const valid = require('../lib/valid');
+const { fecha } = require('../lib/handlebars')
 
 router.get('/', isLoggedIn, (req, res) => {
     res.redirect('/profile');
@@ -111,6 +112,14 @@ router.post('/login/user', userNone, isNotLoggedIn, async (req, res) => {
 router.get('/exit', isLoggedIn, (req, res) => {
     req.logOut();
     res.redirect('/login');
+});
+
+router.post('/fecha', isLoggedIn, (req, res) => {
+    const date = fecha();
+    res.send(date);
+});
+
+router.post('/change/pass', isLoggedIn, (req, res) => {
 });
 
 module.exports = router;

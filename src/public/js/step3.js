@@ -7,8 +7,7 @@ const validPass = e => {
 
     if (valor.value.length >= 8 && valor.value.length <= 25) {
         valor.classList.remove('color-red');
-        enviar.innerHTML = `<button class='btn btn-grey form-button br-3'>Guardar</button>
-                            <input type='hidden' name='cedula' value='{{usuario.id_usuario}}'>`;
+        enviar.innerHTML = `<button class='btn btn-grey form-button br-3'>Guardar</button>`;
     } else {
         valor.classList.add('color-red');
         valor.focus();

@@ -95,7 +95,7 @@
     height: 40px;
     margin-left: 20px;
     position: relative;
-    width: 500px;
+    width: 300px;
 }
 
 .btn-search {
@@ -117,13 +117,14 @@
 
 .option-sesion {
     background-color: white;
-    box-shadow: 0 0 1px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
     display: block;
     font-size: 12px;
     position: absolute;
     right: 5px;
     top: 50px;
     width: 150px;
+    z-index: 100;
 }
 
 .option-header { position: relative; }
@@ -140,6 +141,15 @@
     width: 100%;
 }
 .li-e i { margin-right: 5px; }
+
+/* Formulario change pass - questions */
+
+.change-content {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
 
 /* Fecha */
 
