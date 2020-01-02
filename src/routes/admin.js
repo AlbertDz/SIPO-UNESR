@@ -5,6 +5,7 @@ const arancel = require('../arancel');
 const helpers = require('../lib/helpers');
 const { isLoggedIn, admin } = require('../lib/auth');
 const valid = require('../lib/valid');
+const { addUser } = require('../lib/handlebars');
 
 router.get('/users', isLoggedIn, admin, async (req, res) => {
     const usuarios = await pool.query('select id_usuario,primer_nom,segundo_nom,primer_ape,segundo_ape,nombre_cargo,numero,correo from usuario inner join cargo on usuario.id_cargo = cargo.id_cargo inner join telefono on usuario.id_telefono = telefono.id_telefono inner join correo on usuario.id_correo = correo.id_correo order by id_usuario asc');
@@ -95,6 +96,12 @@ router.post('/users/add', isLoggedIn, admin, async (req, res) => {
 
 router.get('/users/edit', isLoggedIn, admin, (req, res) => {
     res.render('admin/edit-user', { title: 'Editar Usuario' })
+});
+
+router.get('/show/add', isLoggedIn, admin, (req,res) => {
+    const data = addUser();
+
+    res.send(data);
 });
 
 module.exports = router;

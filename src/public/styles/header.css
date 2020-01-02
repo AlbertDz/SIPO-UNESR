@@ -115,10 +115,14 @@
 
 /* Opciones de sesión */
 
+#btn-option-sesion {
+    height: 100%;
+    width: 100%;
+}
+
 .option-sesion {
     background-color: white;
     box-shadow: 0 0 8px rgba(0, 0, 0, .5);
-    display: block;
     font-size: 12px;
     position: absolute;
     right: 5px;
@@ -129,11 +133,19 @@
 
 .option-header { position: relative; }
 
-.btn-option-sesion:hover .option-sesion { display: block; }
-
 .option-sesion>ul>li > ul { display: none; }
 
 .option-sesion>ul>li:hover > ul { display: block; }
+
+.change {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+    display: none;
+    position: absolute;
+    right: 100%;
+    top: 0;
+}
+
+.option-change:hover > .change { display: block; }
 
 .li-e {
     height: 35px;
@@ -141,15 +153,6 @@
     width: 100%;
 }
 .li-e i { margin-right: 5px; }
-
-/* Formulario change pass - questions */
-
-.change-content {
-    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
-    position: absolute;
-    right: 10px;
-    top: 50px;
-}
 
 /* Fecha */
 

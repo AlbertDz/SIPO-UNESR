@@ -117,7 +117,16 @@ ul { list-style: none; }
 	grid-column: 1 / -1;
 	font-size: 30px;
 	margin-bottom: 10px;
+	position: relative;
 	text-transform: uppercase;
+}
+
+.btn-title {
+	height: 30px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
 }
 
 .form-section-parts { grid-template-columns: 250px; }
@@ -297,3 +306,10 @@ ul { list-style: none; }
 
 .c-point { cursor: pointer; }
 .c-default { cursor: default; }
+
+/* Z-index */
+
+.z-index-10 { z-index: 10; }
+.z-index-100 { z-index: 100; }
+.z-index-1000 { z-index: 1000; }
+.z-index-1010 { z-index: 1010; }

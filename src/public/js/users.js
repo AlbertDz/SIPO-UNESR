@@ -1,11 +1,18 @@
 const add = document.getElementById('add-user');
-const list = document.querySelector('.list-users');
-const form = document.querySelector('.form-user');
 const del = document.querySelector('.delete');
 const upd = document.querySelector('.update');
 const reset = document.querySelector('.reset');
+const content = document.querySelector('.content-hide');
 
-add.addEventListener('click', e => {
-    list.classList.toggle('hide');
-    form.classList.toggle('hide');
-})
+const addUser = e => {
+    fetch('/show/add', {method: 'GET'})
+    .then(res => res.text())
+    .then(data => {
+        content.style.display = 'flex';
+        content.innerHTML = data;
+    });
+};
+
+window.addEventListener('load', () => {
+    add.addEventListener('click', addUser);
+});

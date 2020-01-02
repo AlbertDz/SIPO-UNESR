@@ -119,7 +119,4 @@ router.post('/fecha', isLoggedIn, (req, res) => {
     res.send(date);
 });
 
-router.post('/change/pass', isLoggedIn, (req, res) => {
-});
-
 module.exports = router;

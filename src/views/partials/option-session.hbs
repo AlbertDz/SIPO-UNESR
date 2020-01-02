@@ -4,14 +4,23 @@
                 sesión</a>
         </li>
         <li>
-            <div class="color-grey btn-white li-e c-default"><i class="fas fa-cog"></i>{{user.primer_nom}} {{user.primer_ape}}
+            <div class="color-grey btn-white li-e c-default"><i class="fas fa-cog"></i>{{user.primer_nom}}
+                {{user.primer_ape}}
             </div class="no-link color-black btn-white">
             <ul>
-                <li><span class="color-grey btn-white li-e" id="change-pass"><i class="fas fa-user-lock"></i>Cambiar
-                        contraseña</span>
+                <li class="option-change">
+                    <span class="color-grey btn-white li-e c-default">
+                        <i class="fas fa-user-lock"></i>Cambiar
+                        contraseña
+                    </span>
+                    {{> change-pass }}
                 </li>
-                <li><span class="color-grey btn-white li-e" id="change-question"><i class="fas fa-question-circle"></i>Cambiar
-                        preguntas</span>
+                <li class="option-change">
+                    <span class="color-grey btn-white li-e c-default">
+                        <i class="fas fa-question-circle"></i>Cambiar
+                        preguntas
+                    </span>
+                    {{> change-questions }}
                 </li>
             </ul>
         </li>
