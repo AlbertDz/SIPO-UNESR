@@ -8,7 +8,9 @@
 <div class="profile-content p-10">
     <div class="profile-main">
         {{> cards }}
-        {{> edit-profile }}
+        <div class="content-hide z-index-1000">
+            {{> edit-profile }}
+        </div>
     </div>
     <div class="profile-data">
         <section class="profile-img">
@@ -26,7 +28,7 @@
         </section>
     </div>
     <div class="profile-direct-access color-b-white">
-        <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">Accesos directos</h2>
+        <h2 class="form-title font-f-s p-10 color-b-blue-3 font-14">Otras Opciones</h2>
     </div>
 </div>
 <script src="/js/profile.js"></script>

@@ -5,15 +5,17 @@ const arancel = require('../arancel');
 const helpers = require('../lib/helpers');
 const { isLoggedIn, admin } = require('../lib/auth');
 const valid = require('../lib/valid');
-const { addUser } = require('../lib/handlebars');
+const { addUser, editUser, resetUser } = require('../lib/form');
 
 router.get('/users', isLoggedIn, admin, async (req, res) => {
     const usuarios = await pool.query('select id_usuario,primer_nom,segundo_nom,primer_ape,segundo_ape,nombre_cargo,numero,correo from usuario inner join cargo on usuario.id_cargo = cargo.id_cargo inner join telefono on usuario.id_telefono = telefono.id_telefono inner join correo on usuario.id_correo = correo.id_correo order by id_usuario asc');
     res.render('admin/users', { usuarios, title: 'Usuarios' });
 });
 
-router.get('/aranceles', isLoggedIn, admin, async (req, res) => {
-    res.render('admin/aranceles', { arancel, title: 'Aranceles' });
+router.post('/users/add/show', isLoggedIn, admin, (req,res) => {
+    const data = addUser();
+    
+    res.send(data);
 });
 
 router.post('/users/add', isLoggedIn, admin, async (req, res) => {
@@ -57,7 +59,7 @@ router.post('/users/add', isLoggedIn, admin, async (req, res) => {
     const newCorreo = {
         correo: correo.toUpperCase()
     }
-
+    
     if (valid.validName(nombre1) && valid.validName(nombre2) && valid.validName(apellido1) && valid.validName(apellido2) && valid.validPre(pregunta1) && valid.validPre(pregunta2) && valid.validRes(respuesta1) && valid.validRes(respuesta2) && valid.validCed(cedula) && valid.validTel(telefono) && valid.validCar(cargo) && valid.validPass(pass)) {
         // Verificar que no exista usuario con la misma cedula
         const usuario = await pool.query('select * from usuario where id_usuario = ?', [cedula]);
@@ -84,24 +86,32 @@ router.post('/users/add', isLoggedIn, admin, async (req, res) => {
             await pool.query('insert into usuario set ?', [newUser]);
             await pool.query('insert into login set ?', [newLogin]);
             await pool.query('insert into tipo_acceso_usuario set ?', [newAccesoUser]);
-    
+            
             req.flash('success', 'Usuario registrado satisfactoriamente');
         };
     } else {
         req.flash('message', 'Datos incorrectos, por favor verifique y vuelva a intentar');
     };
-
+    
     res.redirect('/users');
 });
 
-router.get('/users/edit', isLoggedIn, admin, (req, res) => {
-    res.render('admin/edit-user', { title: 'Editar Usuario' })
-});
-
-router.get('/show/add', isLoggedIn, admin, (req,res) => {
-    const data = addUser();
+router.post('/users/edit/show', isLoggedIn, admin, async (req,res) => {
+    const { id } = req.body;
+    const data = await editUser(id);
 
     res.send(data);
+});
+
+router.post('/users/reset/show', isLoggedIn, admin, async (req,res) => {
+    const { id } = req.body;
+    const data = await resetUser(id);
+
+    res.send(data);
+});
+
+router.get('/aranceles', isLoggedIn, admin, async (req, res) => {
+    res.render('admin/aranceles', { arancel, title: 'Aranceles' });
 });
 
 module.exports = router;

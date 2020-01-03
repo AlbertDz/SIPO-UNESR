@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use(require('./routes'));
-app.use(require('./routes/admin'));
+app.use('/admin', require('./routes/admin'));
 app.use('/recover', require('./routes/recover'));
 
 // Public

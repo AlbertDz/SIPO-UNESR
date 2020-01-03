@@ -13,6 +13,5 @@ const ajax = e => {
 };
 
 window.addEventListener('load', () => {
-    setInterval(ajax, 1000);
     btn.addEventListener('click', hideShow);
 });
