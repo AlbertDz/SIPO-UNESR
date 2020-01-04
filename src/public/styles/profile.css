@@ -26,7 +26,7 @@
 .cards, .form-profile-edit { transition: all 1s ease; }
 
 .cards {
-    grid-gap: 15px;
+    grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, 200px);
 }
 

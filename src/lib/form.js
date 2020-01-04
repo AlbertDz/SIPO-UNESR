@@ -1,4 +1,5 @@
 const pool = require('../database');
+const materias = require('../materias');
 
 const form = {};
 
@@ -98,21 +99,17 @@ form.addUser = () => {
                         <div class="form-section">
                             <p class="color-red">Datos requeridos (*)</p>
                         </div>
-                        <div class="form-section container">
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso3" id="3">
-                                <label for="3" class="checkbox br-3">Administrador</label>
-                            </div>
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso2" id="2">
-                                <label for="2" class="checkbox br-3">Analista Administrativo</label>
-                            </div>
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso1" id="1">
-                                <label for="1" class="checkbox br-3">Control Estudio</label>
-                            </div>
+                        <div class="form-section">
+                            <input class="check-list" type="checkbox" name="acceso3" id="3">
+                            <label for="3">Administrador</label>
+
+                            <input class="check-list" type="checkbox" name="acceso2" id="2">
+                            <label for="2">Analista Administrativo</label>
+
+                            <input class="check-list" type="checkbox" name="acceso1" id="1">
+                            <label for="1">Control Estudio</label>
                         </div>
-                        <div class="form-section container">
+                        <div class="form-section">
                             <button class="btn btn-grey form-button br-3">Registrar</button>
                         </div>
                     </form>
@@ -132,7 +129,7 @@ form.editUser = async id => {
     (acceso[0].control_estudio === 'on') ? rows[0].control_estudio = 'checked' : rows[0].control_estudio = '';
 
     const data = `<section class="container">
-                    <form action="" method="POST" class="form">
+                    <form action="/admin/users/edit/${rows[0].id_usuario}" method="POST" class="form">
                         <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">
                             EDITAR ${rows[0].primer_nom} ${rows[0].primer_ape}
                             <span class="container btn btn-blue-2 br-3 btn-title font-12 cancel"><i class="fas fa-times"></i></span>
@@ -163,7 +160,7 @@ form.editUser = async id => {
                                 </label>
                             </div>
                             <div class="form-section">
-                                <input value="${rows[0].id_usuario}" autocomplete="off" type="text" class="form-input" name="cedula" id="ced" required>
+                                <input value="${rows[0].id_usuario}" autocomplete="off" type="text" class="form-input" name="cedula" id="ced" required disabled>
                                 <label for="" class="form-label">
                                     <span class="label-content">Cedula*</span>
                                 </label>
@@ -190,22 +187,17 @@ form.editUser = async id => {
                         <div class="form-section">
                             <p class="color-red">Datos requeridos (*)</p>
                         </div>
-                        <div class="form-section container">
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso3" id="3" ${rows[0].admin}>
-                                <label for="3" class="checkbox br-3">Administrador</label>
-                            </div>
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso2" id="2"
-                                ${rows[0].analista_admin}>
-                                <label for="2" class="checkbox br-3">Analista Administrativo</label>
-                            </div>
-                            <div class="form-check br-3">
-                                <input type="checkbox" name="acceso1" id="1" ${rows[0].control_estudio}>
-                                <label for="1" class="checkbox br-3">Control Estudio</label>
-                            </div>
+                        <div class="form-section">
+                            <input class="check-list" type="checkbox" name="acceso3" id="3" ${rows[0].admin}>
+                            <label for="3">Administrador</label>
+
+                            <input class="check-list" type="checkbox" name="acceso2" id="2" ${rows[0].analista_admin}>
+                            <label for="2">Analista Administrativo</label>
+
+                            <input class="check-list" type="checkbox" name="acceso1" id="1" ${rows[0].control_estudio}>
+                            <label for="1">Control Estudio</label>
                         </div>
-                        <div class="form-section container">
+                        <div class="form-section">
                             <button class="btn btn-grey form-button br-3">Actualizar</button>
                         </div>
                     </form>
@@ -265,7 +257,7 @@ form.resetUser = async id => {
                         <div class="form-section">
                             <p class="color-red">Datos requeridos (*)</p>
                         </div>
-                        <div class="form-section container">
+                        <div class="form-section">
                             <button class="btn btn-grey form-button br-3">Resetear</button>
                         </div>
                     </form>
@@ -275,5 +267,16 @@ form.resetUser = async id => {
     return data;
 };
 
+form.showMaterias = codigo => {
+    let data = '';
+    for (let i in materias) {
+        data += `
+            <input class="check-list" type="checkbox" name="${materias[i].codigo}" id="${materias[i].codigo}">
+            <label for="${materias[i].codigo}">${materias[i].materia}</label>
+        `;
+    }
+
+    return data;
+};
 
 module.exports = form;

@@ -79,7 +79,7 @@ router.post('/login/user', userNone, isNotLoggedIn, async (req, res) => {
         
         if (usuario.length > 0) {
             req.flash('message', 'Ya existe un usuario con ese documento de identidad, por favor verifique los datos');
-            res.redirect('/users');
+            res.redirect('/login/user');
         } else {
             // guardar nuevo administrador
             const resultCargo = await pool.query('insert into cargo set ?', [newCargo]);

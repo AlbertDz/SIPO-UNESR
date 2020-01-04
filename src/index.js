@@ -51,6 +51,8 @@ app.use((req, res, next) => {
 app.use(require('./routes'));
 app.use('/admin', require('./routes/admin'));
 app.use('/recover', require('./routes/recover'));
+app.use('/analista-admin', require('./routes/analista-admin'));
+app.use('/control-estudio', require('./routes/control-estudio'));
 
 // Public
 app.use(express.static(path.join(__dirname, 'public')));

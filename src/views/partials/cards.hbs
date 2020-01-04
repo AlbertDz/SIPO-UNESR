@@ -1,5 +1,10 @@
 <section class="cards">
     {{#if user.control_estudio}}
+    <a href="/control-estudio/nuevo-ingreso" class="card">
+        <img src="/img/ingreso.jpg">
+        <h3>Nuevo Ingreso</h3>
+        <h4>Control Estudio</h4>
+    </a>
     {{/if}}
     {{#if user.analista_admin}}
     <a href="" class="card">
@@ -17,6 +22,11 @@
     <a href="" class="card">
         <img src="/img/consulta.jpg">
         <h3>Consultas</h3>
+        <h4>Administrador</h4>
+    </a>
+    <a href="" class="card">
+        <img src="/img/calendar.jpg">
+        <h3>Periodo Académico</h3>
         <h4>Administrador</h4>
     </a>
     <a href="/admin/users" class="card">

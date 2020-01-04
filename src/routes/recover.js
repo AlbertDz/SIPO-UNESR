@@ -42,7 +42,7 @@ router.post('/step/3/:id', userYes, isNotLoggedIn, async (req, res) => {
 
 router.post('/step/completed/:id', userYes, isNotLoggedIn, async (req, res) => {
     const { id } = req.params;
-    let { pass, cedula } = req.body;
+    let { pass } = req.body;
     pass = await helpers.encryptPassword(pass),
     await pool.query('update login set  bloqueado = 0, intentos = 3, password = ? where id_usuario = ?', [pass, id]);
 

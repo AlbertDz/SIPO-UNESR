@@ -26,26 +26,31 @@ module.exports = {
         return res.redirect('/profile');
     },
     controlEst(req, res, next) {
-        if (req.user.analista_control_est) {
+        if (req.user.control_estudio) {
             return next();
         };
         return res.redirect('/profile');
     },
     async userYes(req, res, next) {
         const usuarios = await pool.query('select admin from tipo_acceso');
-        if (usuarios.length <= 0 || usuarios[0].admin === null) {
-            console.log('Estamos aqui')
-            return res.redirect('/login/user');
-        } else {
-            return next();
-        }
+
+        for (let i in usuarios) {
+            if (usuarios[i].admin === 'on') {
+                return next();
+            };
+        };
+
+        return res.redirect('/login/user');
     },
     async userNone(req, res, next) {
         const usuarios = await pool.query('select admin from tipo_acceso');
-        if (usuarios.length <= 0 || usuarios[0].admin === null) {
-            return next();
-        } else {
-            return res.redirect('/login');
-        }
+
+        for (let i in usuarios) {
+            if (usuarios[i].admin === 'on') {
+                return res.redirect('/login');
+            };
+        };
+
+        return next();
     }
 };
