@@ -9,6 +9,7 @@ const { addUser, editUser, resetUser } = require('../lib/form');
 
 router.get('/users', isLoggedIn, admin, async (req, res) => {
     const usuarios = await pool.query('select id_usuario,primer_nom,segundo_nom,primer_ape,segundo_ape,nombre_cargo,numero,correo from usuario inner join cargo on usuario.id_cargo = cargo.id_cargo inner join telefono on usuario.id_telefono = telefono.id_telefono inner join correo on usuario.id_correo = correo.id_correo order by id_usuario asc');
+
     res.render('admin/users', { usuarios, title: 'Usuarios' });
 });
 

@@ -132,8 +132,16 @@
                     </label>
                 </div>
             </div>
+            
+            <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">Documentos</h2>
+            <div class="form-section-check">
+                {{#each recaudos}}
+                <input type="checkbox" name="{{codigo}}" id="{{codigo}}" class="check-list">
+                <label for="{{codigo}}">{{concepto}}</label>
+                {{/each}}
+            </div>
 
-            <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">Datos de la Carrera</h2>
+            <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">Carrera</h2>
             <div class="form-section-parts g-t-c-4">
                 <div class="form-section">
                     <select class="form-input" id="esp" required>
@@ -151,7 +159,7 @@
                     </label>
                 </div>
             </div>
-            <div class="form-section" id="materias"></div>
+            <div class="form-section-check" id="materias"></div>
 
             <div class="form-section">
                 <p class="color-red">Datos requeridos (*)</p>

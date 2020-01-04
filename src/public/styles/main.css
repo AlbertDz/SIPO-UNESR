@@ -53,13 +53,27 @@ body::-webkit-scrollbar-thumb {
 }
 
 .content-hide {
-    align-content: center;
-    background-color: rgba(0, 0, 0, .7);
-    display: none;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
     height: 100vh;
     justify-content: center;
     left: 0;
     position: fixed;
     top: 0;
+    visibility: hidden;
     width: 100vw;
+}
+
+.content-hide.active { visibility: visible; }
+
+.popup {
+	opacity: 0;
+	transform: scale(1);
+	transition: .3s ease all;
+}
+
+.popup.active {
+    opacity: 1;
+    transform: scale(1);
 }

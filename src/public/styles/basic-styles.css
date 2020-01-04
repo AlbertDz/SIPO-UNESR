@@ -23,7 +23,7 @@ ul { list-style: none; }
 
 /* Main */
 
-.form, .form-section-parts { display: grid; }
+.form, .form-section-parts, .form-section-check { display: grid; }
 
 .container, .btn, .footer-b-r, .form-title, .form-section {
 	align-items: center;
@@ -145,7 +145,8 @@ ul { list-style: none; }
     height: 100%;
 	outline: none;
     padding: 5px 0;
-    width: 100%;
+	width: 100%;
+	text-transform: uppercase;
 }
 
 .form-label {
@@ -192,6 +193,8 @@ ul { list-style: none; }
 	width: 350px;
 }
 
+.form-section-check { grid-template-columns: repeat(2, 1fr); }
+
 .check-list { display: none; }
 
 .check-list + label {
@@ -199,6 +202,7 @@ ul { list-style: none; }
 	cursor: pointer;
 	margin: 0.2em;
 	padding: .2em;
+	text-transform: uppercase;
 }
 
 .check-list + label:before {

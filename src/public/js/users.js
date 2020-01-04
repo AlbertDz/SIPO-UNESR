@@ -2,14 +2,16 @@ const add = document.getElementById('add-user');
 const edit = document.getElementsByClassName('edit-user');
 const reset = document.getElementsByClassName('reset-user');
 const content = document.querySelector('.content-hide');
+const popup = document.querySelector('.popup');
 const cancel = document.getElementsByClassName('cancel');
 
 const addUser = e => {
     fetch('/admin/users/add/show', {method: 'POST'})
     .then(res => res.text())
     .then(data => {
-        content.style.display = 'flex';
-        content.innerHTML = data;
+        content.classList.add('active');
+        popup.classList.add('active');
+        popup.innerHTML = data;
 
         cancelLoad();
     });   
@@ -26,8 +28,9 @@ const editUser = e => {
         })
         .then(res => res.text())
         .then(data => {
-            content.style.display = 'flex';
-            content.innerHTML = data;
+            content.classList.add('active');
+            popup.classList.add('active');
+            popup.innerHTML = data;
             
             cancelLoad();
         });
@@ -45,8 +48,9 @@ const resetUser = e => {
         })
         .then(res => res.text())
         .then(data => {
-            content.style.display = 'flex';
-            content.innerHTML = data;
+            content.classList.add('active');
+            popup.classList.add('active');
+            popup.innerHTML = data;
             
             cancelLoad();
         });
@@ -59,7 +63,10 @@ const cancelLoad = () => {
     }
 };
 
-const hideContent = e => content.style.display = 'none';
+const hideContent = e => {
+    content.classList.remove('active');
+    popup.classList.remove('active');
+}
 
 window.addEventListener('load', () => {
     add.addEventListener('click', addUser);
