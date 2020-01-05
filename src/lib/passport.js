@@ -2,6 +2,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('../lib/helpers');
+const controlEstudio  = require('../enlaces/controlEstudio');
+const analistaAdmin  = require('../enlaces/analistaAdmin');
+const admin  = require('../enlaces/admin');
 
 passport.use('local.login', new LocalStrategy({
     usernameField: 'cedula',
@@ -9,6 +12,7 @@ passport.use('local.login', new LocalStrategy({
     passReqToCallback: true
 }, async (req, cedula, pass, done) => {
     const rows = await pool.query('select * from login where id_usuario = ?', [cedula]);
+
     if (rows.length > 0) {
         const user = rows[0];
         const valuepass = await helpers.matchPassword(pass, user.password);
@@ -42,13 +46,43 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
+    // Creando variable global para usuario(user)
     const rows = await pool.query('select id_usuario,primer_nom,segundo_nom,primer_ape,segundo_ape,nombre_cargo,numero,correo,pregunta1,pregunta2 from usuario inner join cargo on usuario.id_cargo = cargo.id_cargo inner join telefono on usuario.id_telefono = telefono.id_telefono inner join correo on usuario.id_correo = correo.id_correo inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [id]);
 
     const acceso = await pool.query('select admin,analista_admin,control_estudio from tipo_acceso_usuario inner join tipo_acceso on tipo_acceso_usuario.id_acceso = tipo_acceso.id_acceso where id_usuario = ?', [id])
 
+    // Comprobando el tipo de acceso
     rows[0].admin = acceso[0].admin;
     rows[0].analista_admin = acceso[0].analista_admin;
     rows[0].control_estudio = acceso[0].control_estudio;
+
+    // Añadiendo los enlaces correspondientes
+    const enlaces = {};
+    let enlace = 0;
+
+    if (rows[0].control_estudio) {
+        for (let i in controlEstudio) {
+            enlaces[enlace] = controlEstudio[i];
+            enlaces[enlace].acceso = 'Control Estudio';
+            enlace ++;
+        };     
+    };
+    if (rows[0].analista_admin) {
+        for (let i in analistaAdmin) {
+            enlaces[enlace] = analistaAdmin[i];
+            enlaces[enlace].acceso = 'Analista Administrativo';
+            enlace ++;
+        };
+    };
+    if (rows[0].admin) {
+        for (let i in admin) {
+            enlaces[enlace] = admin[i];
+            enlaces[enlace].acceso = 'Administrador';
+            enlace ++;
+        };
+    };
+
+    rows[0].enlaces = enlaces;
 
     done(null, rows[0]);
 });

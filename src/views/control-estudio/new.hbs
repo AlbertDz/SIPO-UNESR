@@ -144,14 +144,25 @@
             <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">Carrera</h2>
             <div class="form-section-parts g-t-c-4">
                 <div class="form-section">
-                    <select class="form-input" id="esp" required>
+                    <select class="form-input" id="postgrado" required>
                         <option value="">- - -</option>
-                        <option value="E32">GERENCIA DE RECURSOS HUMANOS</option>
+                        <option value="E">Especialización</option>
+                        <option value="M">Maestría</option>
+                        <option value="D">Doctorado</option>
                     </select>
                     <label for="" class="form-label">
-                        <span class="label-content">Especialización Carrera*</span>
+                        <span class="label-content">Postgrado*</span>
                     </label>
-                </div>                
+                </div>
+                <div class="form-section">
+                    <select class="form-input" id="carrera" required>
+                        <option value="">- - -</option>
+                        <option value="E32">Gerencia de recursos humanos</option>
+                    </select>
+                    <label for="" class="form-label">
+                        <span class="label-content">Carrera*</span>
+                    </label>
+                </div>              
                 <div class="form-section">
                     <input autocomplete="off" type="text" class="form-input" name="cohorte" id="cohorte" value="2020" required disabled>
                     <label for="" class="form-label">

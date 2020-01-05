@@ -1,4 +1,5 @@
-const esp = document.getElementById('esp');
+const postgrado = document.getElementById('postgrado');
+const carrera = document.getElementById('carrera');
 const materias = document.getElementById('materias');
 
 const selectCarrera = e => {
@@ -13,8 +14,6 @@ const selectCarrera = e => {
         .then(res => res.text())
         .then(data => {
             materias.innerHTML = data;
-
-            cancelLoad();
         });
     } else {
         materias.innerHTML = '';
@@ -22,5 +21,5 @@ const selectCarrera = e => {
 };
 
 window.addEventListener('load', () => {
-    esp.addEventListener('change', selectCarrera);
+    carrera.addEventListener('change', selectCarrera);
 });

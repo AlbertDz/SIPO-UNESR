@@ -1,0 +1,23 @@
+<div class="module-header">
+    <h2 class="font-f-s">Pago de Aranceles</h2>
+</div>
+
+<div class="p-10" id="pago-arancel">
+    <table class="table">
+        <tr class="table-tr color-b-blue-3">
+            <th class="table-th">Cedula</th>
+            <th class="table-th">Nombres</th>
+            <th class="table-th">Apellidos</th>
+            <th class="table-th">Postgrado</th>
+        </tr>
+        {{#each estudiantes}}
+        <tr class="table-tr c-point select-tr select-estudiante" data-id="{{cedula}}">
+            <td class="table-td">{{cedula}}</td>
+            <td class="table-td">{{nombres}}</td>
+            <td class="table-td">{{apellidos}}</td>
+            <td class="table-td">{{postgrado}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+<script src="/js/pago-arancel.js"></script>

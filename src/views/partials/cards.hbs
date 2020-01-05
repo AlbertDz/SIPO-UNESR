@@ -1,38 +1,9 @@
 <section class="cards">
-    {{#if user.control_estudio}}
-    <a href="/control-estudio/nuevo-ingreso" class="card">
-        <img src="/img/ingreso.jpg">
-        <h3>Nuevo Ingreso</h3>
-        <h4>Control Estudio</h4>
+    {{#each user.enlaces}}
+    <a href="{{url}}" class="card">
+        <img src="/img/{{img}}">
+        <h3>{{concepto}}</h3>
+        <h4>{{acceso}}</h4>
     </a>
-    {{/if}}
-    {{#if user.analista_admin}}
-    <a href="" class="card">
-        <img src="/img/pagoArancel.jpg">
-        <h3>Pago de Aranceles</h3>
-        <h4>Analista Administrativo</h4>
-    </a>
-    {{/if}}
-    {{#if user.admin}}
-    <a href="/admin/aranceles" class="card">
-        <img src="/img/aranceles.jpg">
-        <h3>Aranceles</h3>
-        <h4>Administrador</h4>
-    </a>
-    <a href="" class="card">
-        <img src="/img/consulta.jpg">
-        <h3>Consultas</h3>
-        <h4>Administrador</h4>
-    </a>
-    <a href="" class="card">
-        <img src="/img/calendar.jpg">
-        <h3>Periodo Académico</h3>
-        <h4>Administrador</h4>
-    </a>
-    <a href="/admin/users" class="card">
-        <img src="/img/users.jpeg">
-        <h3>Usuarios</h3>
-        <h4>Administrador</h4>
-    </a>
-    {{/if}}
+    {{/each}}
 </section>

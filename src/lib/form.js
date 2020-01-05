@@ -3,12 +3,12 @@ const materias = require('../materias');
 
 const form = {};
 
-form.addUser = () => {
+form.addUser = form => {
     const data = `<section class="container">
-                    <form action="/admin/users/add" method="POST" class="form c-default">
+                    <form action="${form.action}" method="POST" class="form c-default">
                         <h2 class="form-title font-f-s p-10 color-b-blue-3 font-18">
-                            REGISTRAR USUARIO
-                            <span class="container btn btn-blue-2 br-3 btn-title font-12 cancel"><i class="fas fa-times"></i></span>
+                            ${form.title}
+                            ${form.button}
                         </h2>
                         <div class="form-section-parts g-t-c-4">
                             <div class="form-section">
@@ -100,7 +100,7 @@ form.addUser = () => {
                             <p class="color-red">Datos requeridos (*)</p>
                         </div>
                         <div class="form-section">
-                            <input class="check-list" type="checkbox" name="acceso3" id="3">
+                            <input class="check-list" type="checkbox" name="acceso3" id="3" ${form.checked} ${form.disabled}>
                             <label for="3">Administrador</label>
 
                             <input class="check-list" type="checkbox" name="acceso2" id="2">
@@ -275,6 +275,12 @@ form.showMaterias = codigo => {
             <label for="${materias[i].codigo}">${materias[i].materia}</label>
         `;
     }
+
+    return data;
+};
+
+form.pagoArancel = () => {
+    const data = ``;
 
     return data;
 };

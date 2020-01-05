@@ -255,7 +255,8 @@ ul { list-style: none; }
 .table-th, .table-td {
     border-right: thin solid white;
     padding: 5px 10px;
-    text-align: center;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .table-th:last-child, .table-td:last-child { border: none; }

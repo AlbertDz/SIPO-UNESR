@@ -7,48 +7,14 @@
                     <p class="nav-li-text font-b">Inicio</p>
                 </a>
             </li>
-            {{#if user.control_estudio}}
+            {{#each user.enlaces}}
             <li class="nav-li container c-point">
-                <a href="/control-estudio/nuevo-ingreso" class="no-link color-white">
-                    <img src="/img/ingreso.jpg" class="btn-header">
-                    <p class="nav-li-text font-b">Nuevo Ingreso</p>
+                <a href="{{url}}" class="no-link color-white">
+                    <img src="/img/{{img}}" class="btn-header">
+                    <p class="nav-li-text font-b">{{concepto}}</p>
                 </a>
             </li>
-            {{/if}}
-            {{#if user.analista_admin}}
-            <li class="nav-li container c-point">
-                <a href="" class="no-link color-white">
-                    <img src="/img/pagoArancel.jpg" class="btn-header">
-                    <p class="nav-li-text font-b">Pago de Aranceles</p>
-                </a>
-            </li>
-            {{/if}}
-            {{#if user.admin}}
-            <li class="nav-li container c-point">
-                <a href="/admin/aranceles" class="no-link color-white">
-                    <img src="/img/aranceles.jpg" class="btn-header">
-                    <p class="nav-li-text font-b">Aranceles</p>
-                </a>
-            </li>
-            <li class="nav-li container c-point">
-                <a href="" class="no-link color-white">
-                    <img src="/img/consulta.jpg" class="btn-header">
-                    <p class="nav-li-text font-b">Consultas</p>
-                </a>
-            </li>
-            <li class="nav-li container c-point">
-                <a href="" class="no-link color-white">
-                    <img src="/img/calendar.jpg" class="btn-header">
-                    <p class="nav-li-text font-b">Periodo Académico</p>
-                </a>
-            </li>
-            <li class="nav-li container c-point">
-                <a href="/admin/users" class="no-link color-white">
-                    <img src="/img/users.jpeg" class="btn-header">
-                    <p class="nav-li-text font-b">Usuarios</p>
-                </a>
-            </li>
-            {{/if}}
+            {{/each}}
         </ul>
     </section>
 </nav>
