@@ -4,21 +4,17 @@
 
 .profile-content, .cards, .profile-data, .card { display: grid; }
 
-.profile-content, .profile-data { grid-gap: 10px; }
+.profile-content { grid-gap: 10px; }
 
 .container-img p, .profile-img { justify-content: center; }
-
-.profile-data { align-content: center; }
 
 .container-img { position: relative; }
 
 .container-img p, .container-img img { position: absolute; }
 
 .profile-content {
-    grid-template-areas: "main data"
-                         "main access";
+    grid-template-areas: "main data";
     grid-template-columns: 1fr 420px;
-    grid-template-rows: 200px 300px;
 }
 
 .profile-main { grid-area: main; }
@@ -81,9 +77,12 @@
     grid-area: data;
 
     background-color: white;
+    grid-gap: 5px;
+    grid-template-areas: "img info"
+                         "but info";
     grid-template-columns: 150px 1fr;
-    grid-template-areas: "img info";
-    height: 200px;
+    grid-template-rows: 150px 30px;
+    height: 220px;
     padding: 10px;
 }
 
@@ -103,17 +102,13 @@
 }
 
 .profile-info {
-    color: rgb(100, 100, 100);
     grid-area: info;
-    text-transform: uppercase;
+    
+    color: rgb(100, 100, 100);
 }
 
-.profile-info * {
-    margin: 10px 0;
-}
+.profile-info * { margin: 10px 0; }
 
-.profile-direct-access {
-    grid-area: access;
-
-    overflow-y: auto;
+.profile-button {
+    grid-area: but;
 }

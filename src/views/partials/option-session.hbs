@@ -1,28 +1,26 @@
 <div class="option-sesion hide">
     <ul>
-        <li><a href="/exit" class="no-link color-red btn-white li-e"><i class="fas fa-sign-out-alt"></i>Cerrar
-                sesión</a>
+        <li class="color-blue li-e c-default">
+            <i class="fas fa-cog"></i>{{user.primer_nom}}
+            {{user.primer_ape}}
+        </li>
+        <li class="option-change">
+            <span class="color-grey btn-white li-e">
+                <i class="fas fa-user-lock"></i>Cambiar
+                contraseña
+            </span>
+            {{> change-pass }}
+        </li>
+        <li class="option-change">
+            <span class="color-grey btn-white li-e">
+                <i class="fas fa-question-circle"></i>Cambiar
+                preguntas
+            </span>
+            {{> change-questions }}
         </li>
         <li>
-            <div class="color-grey btn-white li-e c-default"><i class="fas fa-cog"></i>{{user.primer_nom}}
-                {{user.primer_ape}}
-            </div class="no-link color-black btn-white">
-            <ul>
-                <li class="option-change">
-                    <span class="color-grey btn-white li-e c-default">
-                        <i class="fas fa-user-lock"></i>Cambiar
-                        contraseña
-                    </span>
-                    {{> change-pass }}
-                </li>
-                <li class="option-change">
-                    <span class="color-grey btn-white li-e c-default">
-                        <i class="fas fa-question-circle"></i>Cambiar
-                        preguntas
-                    </span>
-                    {{> change-questions }}
-                </li>
-            </ul>
+            <a href="/exit" class="no-link color-grey btn-white li-e"><i class="fas fa-sign-out-alt"></i>Cerrar
+                sesión</a>
         </li>
     </ul>
 </div

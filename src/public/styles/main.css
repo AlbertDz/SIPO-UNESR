@@ -4,6 +4,7 @@
 @import './profile.css';
 @import './login.css';
 @import './recover.css';
+@import './pago-arancel.css';
 
 html, body {
     background-color: rgb(245, 245, 245);
@@ -76,4 +77,42 @@ body::-webkit-scrollbar-thumb {
 .popup.active {
     opacity: 1;
     transform: scale(1);
+}
+
+/* Formulario de busqueda */
+
+.search-box {
+    align-items: center;
+    height: 30px;
+    margin-left: 25px;
+    position: relative;
+    width: 500px;
+}
+
+.btn-search {
+    height: 25px;
+    left: 2.5px;
+    outline: none;
+    position: absolute;
+    top: 2.5px;
+    width: 25px;
+}
+
+.search-txt {
+    border: none;
+    font-size: 16px;
+    height: 100%;
+    outline: none;
+    padding: 5px 5px 5px 30px;
+    width: 100%;
+}
+
+.content-search {
+    border-radius: 0 0 3px 3px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .5);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: absolute;
+    top: 33px;
+    width: 100%;
 }

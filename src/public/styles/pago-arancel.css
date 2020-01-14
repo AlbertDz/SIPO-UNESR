@@ -1,0 +1,8 @@
+.date-student {
+    border: thin solid #014e82;
+    width: 100%;
+}
+
+.date-student * {
+    padding: 5px 0;
+}

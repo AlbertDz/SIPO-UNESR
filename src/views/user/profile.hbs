@@ -16,21 +16,21 @@
     </div>
     <div class="profile-data">
         <section class="profile-img">
-            <span class="container-img c-point" id="profile-edit" title="Editar Perfil">
+            <span class="container-img c-point" title="Cambiar Imagen">
                 <img src="/img/user.png" alt="usuario">
                 <p><i class="fas fa-edit"></i></p>
             </span>
         </section>
-        <section class="profile-info font-12">
+        <section class="profile-info font-12 uppercase">
             <aside class="font-14">{{user.primer_nom}} {{user.segundo_nom}} {{user.primer_ape}} {{user.segundo_ape}}</aside class="font-14">
             <aside><b>C.I:</b> {{user.id_usuario}}</aside>
             <aside><b>Cargo:</b> {{user.nombre_cargo}}</aside>
             <aside><b>Correo:</b> {{user.correo}}</aside>
             <aside><b>Teléfono:</b> 0{{user.numero}}</aside>
         </section>
-    </div>
-    <div class="profile-direct-access color-b-white">
-        <h2 class="form-title font-f-s p-10 color-b-blue-3 font-14">Otras Opciones</h2>
+        <section class="profile-button container">
+            <button class="btn btn-blue-2 uppercase br-3 font-12"  id="profile-edit">Editar Perfil</button>
+        </section>
     </div>
 </div>
 <script src="/js/profile.js"></script>

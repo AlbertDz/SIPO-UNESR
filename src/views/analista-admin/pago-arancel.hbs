@@ -2,20 +2,137 @@
     <h2 class="font-f-s">Pago de Aranceles</h2>
 </div>
 
+<div class="container p-10">
+    <form action="" method="post" class="form">
+        <div class="date-student uppercase font-18 br-3 p-10-20">
+            <p class="date-student-select">Cedula: <b>27513828</b></p>
+            <p class="date-student-select">Nombre: <b>Daniela Codecido</b></p>
+            <p class="date-student-select">Cohorte: <b>2020</b></p>
+            <p class="date-student-select">Postgrado: <b>Doctorado</b></p>
+            <p class="date-student-select">Area: <b>Ciencias de la Educación</b></p>
+            <p class="date-student-select">Mención: <b>CS Administrativos</b></p>
+        </div>
+
+        <h2 class="form-title uppercase font-18 font-f-s color-b-blue-3 p-10">Seleccionar Aranceles</h2>
+        <div class="form-section-check p-10">
+            {{#each arancel}}
+            <input type="checkbox" name="{{codigo}}" id="{{codigo}}" class="check-list">
+            <label for="{{codigo}}" class="uppercase">{{concepto}}</label>
+            {{/each}}
+        </div>
+
+        <div class="p-10">
+            <table class="table uppercase">
+                <tr class="table-tr color-b-grey-2">
+                    <th class="table-th">Codigo</th>
+                    <th class="table-th">Concepto</th>
+                    <th class="table-th">Cant</th>
+                    <th class="table-th">Monto</th>
+                    <th class="table-th">Subtotal</th>
+                </tr>
+                {{#each arancel}}
+                <tr class="table-tr">
+                    <td class="table-td">{{codigo}}</td>
+                    <td class="table-td">{{concepto}}</td>
+                    <td class="table-td">1</td>
+                    <td class="table-td">{{monto}}</td>
+                    <td class="table-td">{{monto}}</td>
+                </tr>
+                {{/each}}
+                <tr>
+                    <td class="table-td"></td>
+                    <td class="table-td"></td>
+                    <td class="table-td"></td>
+                    <th class="table-th color-b-grey-2">Total:</td>
+                    <th class="table-th color-b-grey-2">141.000,00</th>
+                </tr>
+            </table>
+        </div>
+
+        <h2 class="form-title uppercase font-18 font-f-s color-b-blue-3 p-10">Datos Bancarios</h2>
+        <div class="form-section-parts g-t-c-4">
+            <div class="form-section">
+                <input autocomplete="off" type="date" class="form-input uppercase" required>
+                <label for="" class="form-label uppercase">
+                    <span class="label-content">Fecha</span>
+                </label>
+            </div>
+            <div class="form-section">
+                <select class="form-input uppercase">
+                    <option value="">Venezuela</option>
+                    <option value="">Mercantil</option>>
+                </select>
+                <label for="" class="form-label uppercase">
+                    <span class="label-content">Banco</span>
+                </label>
+            </div>
+            <div class="form-section">
+                <input autocomplete="off" type="text" class="form-input uppercase" required>
+                <label for="" class="form-label uppercase">
+                    <span class="label-content">Referencia</span>
+                </label>
+            </div>
+            <div class="form-section">
+                <input autocomplete="off" type="text" class="form-input uppercase" required>
+                <label for="" class="form-label uppercase">
+                    <span class="label-content">Monto</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <span class="btn btn-grey-2 br-3 uppercase p-10" title="Aceptar"><i class="fas fa-vote-yea"></i></span>
+        </div>
+
+        <div class="p-10">
+            <table class="table uppercase">
+                <tr class="table-tr color-b-grey-2">
+                    <th class="table-th">Fecha</th>
+                    <th class="table-th">Banco</th>
+                    <th class="table-th">Referencia</th>
+                    <th class="table-th">Monto</th>
+                    <th class="table-th"></th>
+                </tr>
+                <tr class="table-tr">
+                    <td class="table-td">17/10/2019</td>
+                    <td class="table-td">Mercantil</td>
+                    <td class="table-td">49536685</td>
+                    <td class="table-td">141.000,00</td>
+                    <td class="table-td">
+                        <div class="container">
+                            <span class="delete btn btn-red br-3 font-12" title="Eliminar"><i class="fas fa-trash-alt"></i></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-section">
+            <span class="form-button btn btn-grey br-3 uppercase">Procesar</span>
+        </div>
+    </form>
+</div>
+
 <div class="p-10" id="pago-arancel">
-    <table class="table">
+    <table class="table uppercase">
         <tr class="table-tr color-b-blue-3">
             <th class="table-th">Cedula</th>
             <th class="table-th">Nombres</th>
             <th class="table-th">Apellidos</th>
             <th class="table-th">Postgrado</th>
+            <th class="table-th"></th>
         </tr>
         {{#each estudiantes}}
-        <tr class="table-tr c-point select-tr select-estudiante" data-id="{{cedula}}">
+        <tr class="table-tr select-estudiante" data-id="{{cedula}}">
             <td class="table-td">{{cedula}}</td>
             <td class="table-td">{{nombres}}</td>
             <td class="table-td">{{apellidos}}</td>
             <td class="table-td">{{postgrado}}</td>
+            <td class="table-td">
+                <div class="container">
+                    <span class="btn btn-blue-2 br-3 font-12" title="Seleccionar"><i class="fas fa-check"></i></span>
+                </div>
+            </td>
         </tr>
         {{/each}}
     </table>
