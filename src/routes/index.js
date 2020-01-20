@@ -61,6 +61,7 @@ router.get('/exit', isLoggedIn, (req, res) => {
 
 router.post('/fecha', isLoggedIn, (req, res) => {
     const date = fecha();
+    
     res.send(date);
 });
 
