@@ -63,20 +63,20 @@
 .nav-ul { margin-top: 10px; }
 
 .nav-li {
+    border-left: 2px solid #003253;
     display: grid;
     grid-template-columns: 1fr;   
     height: 50px;
     padding: 0 5px;
     transition: all .5s ease;
     width: 100%;
-
 }
 
 .nav-li:last-child { margin-bottom: 60px; }
 
 .nav-li:hover {
     background-color: rgba(0, 0, 0, .3);
-    border-left: 2px solid;
+    border-color: white;
 }
 
 .nav-li a {
@@ -120,8 +120,10 @@
     top: 0;
 }
 
+.option-change { border-left: 1px solid white; }
+
 .option-change:hover {
-    border-left: 1px solid #014e82;
+    border-color: #014e82;
     transition: all .5s ease;
 }
 
