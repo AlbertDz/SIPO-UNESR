@@ -1,22 +1,26 @@
 module.exports = {
     "enlace1": {
         "url": "/admin/aranceles",
-        "img": "aranceles.jpg",
-        "concepto": "Aranceles"
+        "icon": "fas fa-balance-scale",
+        "concepto": "Aranceles",
+        "img": "aranceles.jpg"
     },
     "enlace2": {
         "url": "",
-        "img": "consulta.jpg",
-        "concepto": "Consultas"
+        "icon": "fas fa-folder-open",
+        "concepto": "Consultas",
+        "img": "consulta.jpg"
     },
     "enlace3": {
         "url": "",
-        "img": "calendar.jpg",
-        "concepto": "Periodo Académico"
+        "icon": "far fa-calendar-alt",
+        "concepto": "Periodo Académico",
+        "img": "calendar.jpg"
     },
     "enlace4": {
         "url": "/admin/users",
-        "img": "users.jpeg",
-        "concepto": "Usuarios"
+        "icon": "fas fa-users",
+        "concepto": "Usuarios",
+        "img": "users.jpeg"
     }
 };

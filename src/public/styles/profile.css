@@ -2,7 +2,7 @@
 
 .container-img p { align-items: center; }
 
-.profile-content, .cards, .profile-data, .card { display: grid; }
+.profile-content, .cards, .card { display: grid; }
 
 .profile-content { grid-gap: 10px; }
 
@@ -13,11 +13,8 @@
 .container-img p, .container-img img { position: absolute; }
 
 .profile-content {
-    grid-template-areas: "main data";
-    grid-template-columns: 1fr 420px;
+    grid-template-columns: 1fr;
 }
-
-.profile-main { grid-area: main; }
 
 .cards, .form-profile-edit { transition: all 1s ease; }
 
@@ -71,44 +68,4 @@
     background-color: rgba(0, 0, 0, .6);
     font-size: 22px;
     height: 50px;
-}
-
-.profile-data {
-    grid-area: data;
-
-    background-color: white;
-    grid-gap: 5px;
-    grid-template-areas: "img info"
-                         "but info";
-    grid-template-columns: 150px 1fr;
-    grid-template-rows: 150px 30px;
-    height: 220px;
-    padding: 10px;
-}
-
-.profile-img { grid-area: img; }
-
-.container-img {
-    background-color: rgba(0, 0, 0, .3);
-    clip-path: circle(50%);
-    display: inline-block;
-    height: 150px;
-    width: 150px;
-}
-
-.container-img img {
-    height: 100%;
-    width: 100%;
-}
-
-.profile-info {
-    grid-area: info;
-    
-    color: rgb(100, 100, 100);
-}
-
-.profile-info * { margin: 10px 0; }
-
-.profile-button {
-    grid-area: but;
 }

@@ -1,17 +1,22 @@
-<nav class="nav color-b-blue-3">
+<nav class="nav color-b-grey-2">
     <section class="nav-ul-section font-12">
-        <ul class="nav-ul uppercase">
+        {{> search }}
+        <ul class="nav-ul">
             <li class="nav-li container c-point">
                 <a href="/profile" class="no-link color-white">
-                    <img src="/img/home.jpeg" class="btn-header">
-                    <p class="nav-li-text font-b">Inicio</p>
+                    <span class="icon">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <p class="nav-li-text font-b uppercase">Inicio</p>
                 </a>
             </li>
             {{#each user.enlaces}}
             <li class="nav-li container c-point">
                 <a href="{{url}}" class="no-link color-white">
-                    <img src="/img/{{img}}" class="btn-header">
-                    <p class="nav-li-text font-b">{{concepto}}</p>
+                    <span class="icon">
+                        <i class="{{icon}}"></i>
+                    </span>
+                    <p class="nav-li-text font-b uppercase">{{concepto}}</p>
                 </a>
             </li>
             {{/each}}

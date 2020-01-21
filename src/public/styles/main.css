@@ -13,7 +13,7 @@ html, body {
 .body {
     display: grid;
     grid-template-rows: 50px auto;
-    grid-template-columns: 50px 1fr;
+    grid-template-columns: 200px 1fr;
     grid-template-areas: "header header"
                          "nav cont";
 }
@@ -84,9 +84,8 @@ body::-webkit-scrollbar-thumb {
 .search-box {
     align-items: center;
     height: 30px;
-    margin-left: 25px;
+    margin: 10px 5px;
     position: relative;
-    width: 500px;
 }
 
 .btn-search {
