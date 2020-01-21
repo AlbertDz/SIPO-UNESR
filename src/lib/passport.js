@@ -2,9 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('../lib/helpers');
-const controlEstudio  = require('../enlaces/controlEstudio');
-const analistaAdmin  = require('../enlaces/analistaAdmin');
-const admin  = require('../enlaces/admin');
 
 passport.use('local.login', new LocalStrategy({
     usernameField: 'cedula',
@@ -55,34 +52,6 @@ passport.deserializeUser(async (id, done) => {
     rows[0].admin = acceso[0].admin;
     rows[0].analista_admin = acceso[0].analista_admin;
     rows[0].control_estudio = acceso[0].control_estudio;
-
-    // Añadiendo los enlaces correspondientes
-    const enlaces = {};
-    let enlace = 0;
-
-    if (rows[0].control_estudio) {
-        for (let i in controlEstudio) {
-            enlaces[enlace] = controlEstudio[i];
-            enlaces[enlace].acceso = 'Control Estudio';
-            enlace ++;
-        };     
-    };
-    if (rows[0].analista_admin) {
-        for (let i in analistaAdmin) {
-            enlaces[enlace] = analistaAdmin[i];
-            enlaces[enlace].acceso = 'Analista Administrativo';
-            enlace ++;
-        };
-    };
-    if (rows[0].admin) {
-        for (let i in admin) {
-            enlaces[enlace] = admin[i];
-            enlaces[enlace].acceso = 'Administrador';
-            enlace ++;
-        };
-    };
-
-    rows[0].enlaces = enlaces;
 
     done(null, rows[0]);
 });

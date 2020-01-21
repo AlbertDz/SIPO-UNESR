@@ -1,13 +1,12 @@
 <div class="module-header">
-    <h2 class="font-f-s">Bienvenido(a) {{user.primer_nom}} {{user.primer_ape}}</h2>
+    <h2 class="font-f-s font-24">Bienvenido(a) {{user.primer_nom}} {{user.primer_ape}}</h2>
     <div class="container">
-        <h3 class="font-f-s" id="add-user">UNESR</h3>
+        <h3 class="font-f-s font-24">UNESR</h3>
         <img src="/img/logo.png" alt="logo unesr" class="logo">
     </div>
 </div>
 <div class="profile-content p-10">
     <div class="profile-main">
-        {{> cards }}
         <div class="content-hide z-index-1000">
             <div class="popup">
                 {{> edit-profile }}

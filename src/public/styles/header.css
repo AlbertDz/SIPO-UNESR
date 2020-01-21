@@ -1,8 +1,8 @@
 .nav, .nav-li { display: grid; }
 
-.navigation, .header, .search-box, .search-btn, .li-e, .fecha { display: flex; }
+.navigation, .header, .search-box, .search-btn, .li-e, .fecha, .nav-li-itens li a, .nav-li-text { display: flex; }
 
-.navigation, .header, .li-e { align-items: center; }
+.navigation, .header, .li-e, .nav-li-itens li a, .nav-li-text { align-items: center; }
 
 .navigation, .header { justify-content: center; }
 
@@ -15,7 +15,7 @@
     top: 0;
 }
 
-.header, .header-logo, .header-title { z-index: 100; }
+.header, .header-title { z-index: 100; }
 
 .header {
     box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
@@ -36,7 +36,6 @@
 /* Navegación de la página */
 
 .nav {
-    clip-path: polygon(0% 0%, 50px 0%, 50px 100%, 0% 100%);
     grid-area: nav;
     grid-template-columns: 1fr;
     grid-template-rows: 100px auto;
@@ -44,7 +43,7 @@
     margin-top: 50px;
     overflow-y: auto;
     transition: all .4s ease;
-    width: 190px;
+    width: 150px;
 }
 
 .nav::-webkit-scrollbar {
@@ -56,36 +55,56 @@
     border-radius: 20px;
 }
 
-.nav:hover { clip-path: polygon(0% 0%, 190px 0%, 190px 100%, 0% 100%); }
-
 .nav-li {
     display: grid;
     grid-template-columns: 1fr;   
-    height: 50px;
-    padding: 0 5px;
-    transition: all .5s ease;
+    min-height: 40px;
     width: 100%;
-
 }
-
-.nav-li:last-child { margin-bottom: 60px; }
 
 .nav-li:hover { background-color: rgba(0, 0, 0, .5); }
 
-.nav-li a {
+.nav-li .nav-iten {
     display: grid;
-    grid-template-columns: 50px 1fr;
+    grid-gap: 5px;
+    grid-template-columns: 40px 1fr;
 }
 
-.nav-li a img {
+.nav-li .nav-iten .img {
+    height: 40px;
+    padding: 5px;
+    width: 40px;
+}
+
+.nav-li .nav-iten .img .img-iten {
     background-color: white;
     border-radius: 50%;
+    height: 30px;
+    width: 30px;
 }
 
-.nav-li-text {
-    align-items: center;
-    display: flex;
+.nav-li-text { padding-right: 5px; }
+
+.nav-li-itens {
+    background-color: rgba(255, 255, 255, .1);
+    box-shadow: 0 1px 5px black inset;
+    display: none;
 }
+
+.nav-li-itens li { height: 35px; }
+
+.nav-li-itens li a {
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 5px;
+    width: 100%;
+}
+
+.nav-li-itens li:hover { background-color: rgba(255, 255, 255, .1); }
+
+.nav-li.active { background-color: rgba(0, 0, 0, .5); }
+
+.nav-li.active .nav-li-itens { display: block; }
 
 /* Opciones de sesión */
 
