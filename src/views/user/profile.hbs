@@ -1,14 +1,7 @@
-<div class="module-header">
-    <h2 class="font-f-s">Bienvenido(a) {{user.primer_nom}} {{user.primer_ape}}</h2>
-</div>
 <div class="profile-content p-10">
-    <div class="profile-main">
-        {{> cards }}
-        <div class="content-hide z-index-1000">
-            <div class="popup">
-                {{> edit-profile }}
-            </div>
-        </div>
+    <div class="bienvenido">
+        <h2 class="nombre color-white font-f-s">Bienvenido(a) {{user.primer_nom}} {{user.primer_ape}}</h2>
+        <p class="color-white font-20 font-f-s">Ultima sesión 31 Enero 2020 10:45 AM</p>
     </div>
 </div>
 <script src="/js/profile.js"></script>

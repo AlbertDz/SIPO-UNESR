@@ -13,8 +13,31 @@
 .container-img p, .container-img img { position: absolute; }
 
 .profile-content {
+    background-image: url('../img/unesr_losteques.jpg');
+    background-attachment: fixed;
+    background-position-x: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
     grid-template-columns: 1fr;
+    height: 100%;
+    position: fixed;
+    width: 100%;
 }
+
+.bienvenido {
+    align-content: center;
+    background-color: rgba(0, 0, 0, .7);
+    display: grid;
+    font-size: 30px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 20px;
+    height: 100%;
+    padding-left: 150px;
+    position: absolute;
+    width: 100%;
+}
+
+.bienvenido p { margin-left: 10px; }
 
 .cards, .form-profile-edit { transition: all 1s ease; }
 

@@ -82,6 +82,10 @@ ul { list-style: none; }
 
 .btn-select:hover { background-color: rgb(0, 0, 170); }
 
+.btn-border {
+	border: thin solid rgb(80, 80, 80);
+}
+
 .footer-b-r {
 	border-right: 2px solid black;
 	text-align: center;

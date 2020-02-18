@@ -31,26 +31,4 @@ module.exports = {
         };
         return res.redirect('/profile');
     },
-    async userYes(req, res, next) {
-        const usuarios = await pool.query('select admin from tipo_acceso');
-
-        for (let i in usuarios) {
-            if (usuarios[i].admin === 'on') {
-                return next();
-            };
-        };
-
-        return res.redirect('/login/user');
-    },
-    async userNone(req, res, next) {
-        const usuarios = await pool.query('select admin from tipo_acceso');
-
-        for (let i in usuarios) {
-            if (usuarios[i].admin === 'on') {
-                return res.redirect('/login');
-            };
-        };
-
-        return next();
-    }
 };

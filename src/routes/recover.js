@@ -1,14 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../database');
-const { isNotLoggedIn, userYes } = require('../lib/auth');
+const { isNotLoggedIn } = require('../lib/auth');
 const helpers = require('../lib/helpers');
+const { recover } = require('../lib/popup');
 
-router.get('/step/1', userYes, isNotLoggedIn, (req, res) => {
+router.post('/', isNotLoggedIn, (req, res) => {
+    data = recover();
+
+    res.send(data);
+});
+
+router.get('/step/1', isNotLoggedIn, (req, res) => {
     res.render('recover/stepOne', { title: 'Paso 1' });
 });
 
-router.post('/step/2', userYes, isNotLoggedIn, async (req, res) => {
+router.post('/step/2', isNotLoggedIn, async (req, res) => {
     const { cedula } = req.body;
     const usuarios = await pool.query('select id_usuario,primer_nom,primer_ape,pregunta1,pregunta2 from usuario inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [cedula]);
 
@@ -21,7 +28,7 @@ router.post('/step/2', userYes, isNotLoggedIn, async (req, res) => {
     }
 });
 
-router.post('/step/3/:id', userYes, isNotLoggedIn, async (req, res) => {
+router.post('/step/3/:id', isNotLoggedIn, async (req, res) => {
     const { id } = req.params;
     const { respuesta1, respuesta2 } = req.body;
     const usuarios = await pool.query('select id_usuario,primer_nom,primer_ape,respuesta1,respuesta2 from usuario inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [id]);
@@ -40,7 +47,7 @@ router.post('/step/3/:id', userYes, isNotLoggedIn, async (req, res) => {
     }
 });
 
-router.post('/step/completed/:id', userYes, isNotLoggedIn, async (req, res) => {
+router.post('/step/completed/:id', isNotLoggedIn, async (req, res) => {
     const { id } = req.params;
     let { pass } = req.body;
     pass = await helpers.encryptPassword(pass),
