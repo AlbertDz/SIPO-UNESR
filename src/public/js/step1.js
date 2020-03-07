@@ -6,11 +6,11 @@ const validCed = e => {
 
     if (/^([0-9])*$/.test(valor.value) && valor.value.length === 8) {
         valor.classList.remove('color-red');
-        enviar.innerHTML = `<button class='btn btn-grey form-button br-3'>Siguiente</button>`;
+        // enviar.innerHTML = `<button class='btn btn-grey form-button br-3'>Siguiente</button>`;
     } else {
         valor.classList.add('color-red');
         valor.focus();
-        enviar.innerHTML = `<span class='btn btn-grey form-button br-3'>Siguiente</span>`;
+        // enviar.innerHTML = `<span class='btn btn-grey form-button br-3'>Siguiente</span>`;
     }
 };
 

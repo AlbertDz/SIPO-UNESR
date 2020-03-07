@@ -1,6 +1,10 @@
 <div class="bg">
     {{> form-login }}
-    {{> content-hide }}
+    <div class="content-hide z-index-1000">
+        <div class="popup">
+            {{> stepOne }}
+        </div>
+    </div>
 </div>
 
 <script src="/js/login.js"></script>

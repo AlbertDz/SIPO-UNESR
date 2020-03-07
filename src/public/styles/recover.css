@@ -1,9 +1,9 @@
 .recover, .recover-step { display: grid; }
 
 .recover {
+    background-color: white;
     grid-gap: 50px;
-    grid-template-columns: 100vw;
-    grid-template-rows: repeat(3, auto);
+    grid-template-columns: 800px;
 }
 
 .recover-step { grid-template-columns: repeat(3, 1fr); }
