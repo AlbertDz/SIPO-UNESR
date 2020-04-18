@@ -2,9 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('../lib/helpers');
-const controlEstudio  = require('../enlaces/controlEstudio');
-const analistaAdmin  = require('../enlaces/analistaAdmin');
-const admin  = require('../enlaces/admin');
 
 passport.use('local.login', new LocalStrategy({
     usernameField: 'cedula',

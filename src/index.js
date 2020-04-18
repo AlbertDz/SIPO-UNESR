@@ -6,6 +6,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session');
 const passport = require('passport');
+const cors = require("cors");
 
 const { database } = require('./keys');
 
@@ -13,17 +14,18 @@ const { database } = require('./keys');
 const app = express();
 require('./lib/passport');
 
+// CORS
+app.use(cors({ origin: "*" }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+});
+
 // Settings
-app.set('port', process.env.PORT || 8000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', exphbs({
-    defaultLayout: 'main',
-    layoutsDir: path.join(app.get('views'), 'layouts'),
-    partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs',
-    helpers: require('./lib/handlebars')
-}));
-app.set('view engine', '.hbs');
+app.set('port', process.env.PORT || 4000);
 
 // Middlewares
 app.use(session({
@@ -48,14 +50,10 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use(require('./routes'));
-app.use('/admin', require('./routes/admin'));
-app.use('/recover', require('./routes/recover'));
-app.use('/analista-admin', require('./routes/analista-admin'));
-app.use('/control-estudio', require('./routes/control-estudio'));
-
-// Public
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', require('./routes'));
+app.use('/api', require('./routes/recover'));
+app.use('/api', require('./routes/analista'));
+app.use('/api', require('./routes/control-estudio'));
 
 // Starting Server
 app.listen(app.get('port'), () => console.log('Server on port ', app.get('port')));

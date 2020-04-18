@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../database');
 const { isNotLoggedIn } = require('../lib/auth');
 const helpers = require('../lib/helpers');
-const { recover } = require('../lib/popup');
 
 router.post('/', isNotLoggedIn, (req, res) => {
     data = recover();

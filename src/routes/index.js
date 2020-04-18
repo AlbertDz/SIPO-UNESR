@@ -4,21 +4,49 @@ const pool = require('../database');
 const passport = require('passport');
 const { isLoggedIn, isNotLoggedIn } = require('../lib/auth');
 const { fecha } = require('../lib/handlebars')
-const { addUser } = require('../lib/form');
 const { insertUser } = require('../lib/database');
-const estudiantes = require('../estudiantes');
+const { generarFecha } = require('../lib/funciones');
 
-router.get('/', isLoggedIn, (req, res) => {
-    res.redirect('/profile');
+// FECHA
+router.post('/fecha', (req, res) => {
+    const fecha = generarFecha();
+
+    pool.query('insert into fecha set ?', [fecha], (errors, results, fields) => {
+        if (errors) { return res.send(errors) }
+            else { return res.send(results) }
+    });  
 });
 
-router.get('/profile', isLoggedIn, (req, res) => {
-    res.render('user/profile', { title: 'Perfil' });
+router.delete('/fecha/:id', (req, res) => {
+    pool.query('delete from fecha where id_fecha = ?', [req.params.id], (errors, results, fields) => {
+        if (errors) { return res.send(errors) }
+            else { return res.send(results) }
+    })
+});
+// FIN FECHA
+
+// PERIODO, POSTGRADO, CARRERA
+router.get('/periodos', (req, res) => {
+    pool.query('select * from periodo', (errors, results, fields) => {
+        if (errors) { return res.send(errors) }
+            else { return res.send(results) }
+    });
 });
 
-router.get('/login', isNotLoggedIn, (req, res) => {
-    res.render('user/login', { title: 'Login' });
+router.get('/postgrados', (req, res) => {
+    pool.query('select * from postgrado', (errors, results, fields) => {
+        if (errors) { return res.send(errors) }
+            else { return res.send(results) }
+    });
 });
+
+router.get('/carreras', (req, res) => {
+    pool.query('select * from carrera', (errors, results, fields) => {
+        if (errors) { return res.send(errors) }
+            else { return res.send(results) }
+    });
+});
+// FIN PERIODO, POSTGRADO, CARRERA
 
 router.post('/login', isNotLoggedIn, (req, res) => {
     passport.authenticate('local.login', {
@@ -33,11 +61,11 @@ router.get('/exit', isLoggedIn, (req, res) => {
     res.redirect('/login');
 });
 
-router.post('/fecha', isLoggedIn, (req, res) => {
-    const date = fecha();
+// router.post('/fecha', isLoggedIn, (req, res) => {
+//     const date = fecha();
     
-    res.send(date);
-});
+//     res.send(date);
+// });
 
 router.post('/list', isLoggedIn, async (req, res) => {
     let list = {};
