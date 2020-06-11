@@ -5,36 +5,36 @@ const helpers = require('../lib/helpers');
 
 passport.use('local.login', new LocalStrategy({
     usernameField: 'cedula',
-    passwordField: 'pass',
+    passwordField: 'password',
     passReqToCallback: true
-}, async (req, cedula, pass, done) => {
-    const rows = await pool.query('select * from login where id_usuario = ?', [cedula]);
+}, async (req, cedula, password, done) => {
+    const rows = await pool.query('select * from sesion where id_usuario = ?', [cedula]);
 
     if (rows.length > 0) {
         const user = rows[0];
-        const valuepass = await helpers.matchPassword(pass, user.password);
+        const valuePass = await helpers.matchPassword(password, user.password);
 
         if (user.bloqueado) {
-            done(null, false, req.flash('message', 'Usuario Bloqueado.'));
+            done(null, false, {mensaje: '¡Este usuario se encuentra bloqueado!'});
         } else {
-            if (valuepass) {
+            if (valuePass) {
                 intentos = 3;
-                await pool.query('update login set intentos = ? where id_usuario = ?', [intentos, cedula]);
+                await pool.query('update sesion set intentos = ? where id_usuario = ?', [intentos, cedula]);
                 done(null, user);
             } else {
                 if (user.intentos > 1) {
                     intentos = user.intentos - 1;
-                    await pool.query('update login set intentos = ? where id_usuario = ?', [intentos, cedula]);
-                    done(null, false, req.flash('message', 'Contraseña Incorrecta. Quedan ' + intentos + ' intento(s).'));
+                    await pool.query('update sesion set intentos = ? where id_usuario = ?', [intentos, cedula]);
+                    done(null, false, {mensaje: `¡Contraseña incorrecta, le quedan ${intentos} intentos!`});
                 } else {
                     bloqueado = true;
                     await pool.query('update login set bloqueado = ? where id_usuario = ?', [bloqueado, cedula]);
-                    done(null, false, req.flash('message', 'Ha exedido el número de intentos. Su usuario a sido bloqueado.'));
+                    done(null, false, {mensaje: '¡Ha excedido el número de intentos, usuario bloqueado!'});
                 }
             };
         };
     } else {
-        return done(null, false, req.flash('message', 'El usuario no existe'));
+        return done(null, false, {mensaje: '¡El usuario no existe!'});
     };
 }));
 
@@ -44,42 +44,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     // Creando variable global para usuario(user)
-    const rows = await pool.query('select id_usuario,primer_nom,segundo_nom,primer_ape,segundo_ape,nombre_cargo,numero,correo,pregunta1,pregunta2 from usuario inner join cargo on usuario.id_cargo = cargo.id_cargo inner join telefono on usuario.id_telefono = telefono.id_telefono inner join correo on usuario.id_correo = correo.id_correo inner join primera_pregunta on usuario.id_primera_pre = primera_pregunta.id_primera_pre inner join segunda_pregunta on usuario.id_segunda_pre = segunda_pregunta.id_segunda_pre where id_usuario = ?', [id]);
-
-    const acceso = await pool.query('select admin,analista_admin,control_estudio from tipo_acceso_usuario inner join tipo_acceso on tipo_acceso_usuario.id_acceso = tipo_acceso.id_acceso where id_usuario = ?', [id])
-
-    // Comprobando el tipo de acceso
-    rows[0].admin = acceso[0].admin;
-    rows[0].analista_admin = acceso[0].analista_admin;
-    rows[0].control_estudio = acceso[0].control_estudio;
-
-    // Añadiendo los enlaces correspondientes
-    const enlaces = {};
-    let enlace = 0;
-
-    if (rows[0].control_estudio) {
-        for (let i in controlEstudio) {
-            enlaces[enlace] = controlEstudio[i];
-            enlaces[enlace].acceso = 'Control Estudio';
-            enlace ++;
-        };     
-    };
-    if (rows[0].analista_admin) {
-        for (let i in analistaAdmin) {
-            enlaces[enlace] = analistaAdmin[i];
-            enlaces[enlace].acceso = 'Analista Administrativo';
-            enlace ++;
-        };
-    };
-    if (rows[0].admin) {
-        for (let i in admin) {
-            enlaces[enlace] = admin[i];
-            enlaces[enlace].acceso = 'Administrador';
-            enlace ++;
-        };
-    };
-
-    rows[0].enlaces = enlaces;
+    const rows = await pool.query(`select U.id_usuario,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,cargo,T.id_acceso,nombre_acceso 
+                                    from usuario U join tipo_acceso_usuario A on U.id_usuario = A.id_usuario join  tipo_acceso T on A.id_acceso = T.id_acceso
+                                    where id_usuario = ?`, [id]);
 
     done(null, rows[0]);
 });

@@ -1,34 +1,21 @@
-const pool = require('../database');
-
 module.exports = {
     isLoggedIn(req, res, next) {
-        if (req.isAuthenticated()) {
-            return next();
-        };
-        return res.redirect('/login');
+        const bearerHeader = req.headers['authorization'];
+
+        if (typeof bearerHeader !== 'undefined') {
+            req.token = bearerHeader;
+            next();
+        } else {
+            res.sendStatus(403)
+        }
     },
     isNotLoggedIn(req, res, next) {
-        if (!req.isAuthenticated()) {
-            return next();
-        };
-        return res.redirect('/profile');
-    },
-    admin(req, res, next) {
-        if (req.user.admin) {
-            return next();
-        };
-        return res.redirect('/profile');
-    },
-    analistaAdmin(req, res, next) {
-        if (req.user.analista_admin) {
-            return next();
-        };
-        return res.redirect('/profile');
-    },
-    controlEst(req, res, next) {
-        if (req.user.control_estudio) {
-            return next();
-        };
-        return res.redirect('/profile');
+        const bearerHeader = req.headers['Authorization'];
+
+        if (typeof bearerHeader !== 'undefined') {
+            res.sendStatus(403)
+        } else {
+            next();
+        }
     },
 };

@@ -27,7 +27,7 @@ FUNCIONES.generarFecha = (req, res) => {
     minutos = minutos.toString();
     segundos = segundos.toString();
 
-    fecha = {id_fecha: 0, hora:`${hora}:${minutos}:${segundos} ${ampm}`, dia: dia, mes: mes, anio: year};
+    fecha = {id_fecha: 0, hora:`${hora}:${minutos}:${segundos} ${ampm}`, dia: dia, mes: mes+1, anio: year};
 
     return fecha;
 };
